@@ -1,0 +1,8 @@
+﻿<Window x:Class="Rebex.Samples.OAuthAzureAuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Office365 Outlook OAuth 2.0 authentication" Height="700" Width="700" Closed="Window_Closed">
+    <Grid>
+        <WebBrowser HorizontalAlignment="Left" Name="webBrowser" VerticalAlignment="Top" LoadCompleted="WebBrowser_LoadCompleted" Navigated="WebBrowser_Navigated" />
+    </Grid>
+</Window>
