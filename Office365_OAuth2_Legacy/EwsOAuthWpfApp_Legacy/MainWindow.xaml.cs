@@ -60,6 +60,18 @@ namespace EwsOAuthWpfApp
 
         private void OutlookSign_Click(object sender, RoutedEventArgs e)
         {
+            // make sure we have an Azure application client ID and a Rebex key (feel free to remove these checks once configured)
+            if (ClientId.Contains("00000000-"))
+            {
+                MessageBox.Show(this, "Please configure ClientId in MainWindow.xaml.cs file.", "Error");
+                return;
+            }
+            if (Rebex.Licensing.Key.Contains("_TRIAL_KEY_"))
+            {
+                MessageBox.Show(this, "Please set a license key in LicenseKey.cs file.", "Error");
+                return;
+            }
+
             // create OAuthOutlookAuthorizationWindow that handles OAuth2 authorization
             statusLabel.Content = "Authenticating via Office365...";
             _authenticationWindow = new OAuthAzureAuthorizationWindow();

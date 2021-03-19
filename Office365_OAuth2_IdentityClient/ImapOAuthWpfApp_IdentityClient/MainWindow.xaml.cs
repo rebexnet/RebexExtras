@@ -59,6 +59,7 @@ namespace ImapOAuthWpfApp
         {
             InitializeComponent();
 
+            // get your 30-day trial key at https://www.rebex.net/support/trial/
             Rebex.Licensing.Key = LicenseKey.Value;
         }
 
@@ -66,7 +67,9 @@ namespace ImapOAuthWpfApp
         {
             try
             {
-                statusLabel.Content = "Authenticating via Office365...";
+                // make sure we have an Azure application client ID and a Rebex key (feel free to remove these checks once configured)
+                if (ClientId.Contains("00000000-")) throw new ApplicationException("Please configure ClientId in MainWindow.xaml.cs file.");
+                if (Rebex.Licensing.Key.Contains("_TRIAL_KEY_")) throw new ApplicationException("Please set a license key in LicenseKey.cs file.");
 
                 // specify options
                 var options = new PublicClientApplicationOptions()
@@ -84,6 +87,7 @@ namespace ImapOAuthWpfApp
                     .Build();
 
                 // authenticate interactively for the scopes we need
+                statusLabel.Content = "Authenticating via Office365...";
                 AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(Prompt.NoPrompt).ExecuteAsync();
 
                 // keep the access token and account info
