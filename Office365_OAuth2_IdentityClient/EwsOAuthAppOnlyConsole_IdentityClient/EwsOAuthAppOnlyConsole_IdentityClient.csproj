@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net46;net50</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\LicenseKey.cs" Link="LicenseKey.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rebex.Ews" Version="6.0.8123" />
+    <PackageReference Include="Rebex.Mail" Version="6.0.8123" />
+    <PackageReference Include="Rebex.Networking" Version="6.0.8123" />
+    <PackageReference Include="Rebex.Common" Version="6.0.8123" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.43.2" />
+  </ItemGroup>
+
+</Project>
