@@ -93,6 +93,7 @@ namespace EwsOAuthWpfApp
                 // keep the access token and account info
                 _accessToken = result.AccessToken;
                 _account = result.Account;
+                // Note: In real applications, you would most likely want to keep result.ExpiresOn as well
 
                 // retrieve the list of recent messages
                 await GetMessageListAsync();
@@ -121,6 +122,7 @@ namespace EwsOAuthWpfApp
 
                 // update the access token
                 _accessToken = result.AccessToken;
+                // Note: In real applications, you would most likely want to keep result.ExpiresOn as well
 
                 // retrieve the list of recent messages
                 await GetMessageListAsync();

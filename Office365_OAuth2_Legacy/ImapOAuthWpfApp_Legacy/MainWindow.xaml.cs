@@ -159,15 +159,22 @@ namespace ImapOAuthWpfApp
                 statusLabel.Content = "Connecting to IMAP...";
                 client.Connect("outlook.office365.com", SslMode.Implicit);
 
-                // prepare authentication token suitable for IMAP, POP3, or SMTP
+                /*
+                // NOTE: This is no longer needed in Rebex Secure Mail R5.7 or higher
+
+                // prepare (wrap) the authentication token for IMAP, POP3, or SMTP
                 string userName = _credentials.UserName;
                 string accessToken = _credentials.AccessToken;
                 string pattern = string.Format("user={0}{1}auth=Bearer {2}{1}{1}", userName, '\x1', accessToken);
                 string token = Convert.ToBase64String(Encoding.ASCII.GetBytes(pattern));
 
+                // authenticate using the wrapped access token
+                client.Login(token, ImapAuthentication.OAuth20);
+                */
+
                 // authenticate using the OAuth 2.0 access token
                 statusLabel.Content = "Authenticating to IMAP...";
-                client.Login(token, ImapAuthentication.OAuth20);
+                client.Login(_credentials.UserName, _credentials.AccessToken, ImapAuthentication.OAuth20);
 
                 // list recent messages in the 'Inbox' folder
 

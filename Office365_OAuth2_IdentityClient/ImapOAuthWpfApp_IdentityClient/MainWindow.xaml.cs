@@ -93,6 +93,7 @@ namespace ImapOAuthWpfApp
                 // keep the access token and account info
                 _accessToken = result.AccessToken;
                 _account = result.Account;
+                // Note: In real applications, you would most likely want to keep result.ExpiresOn as well
 
                 // make sure we obtained the user name
                 string userName = _account.Username;
@@ -128,6 +129,7 @@ namespace ImapOAuthWpfApp
 
                 // update the access token
                 _accessToken = result.AccessToken;
+                // Note: In real applications, you would most likely want to keep result.ExpiresOn as well
 
                 // retrieve the list of recent messages
                 await GetMessageListAsync();
@@ -153,13 +155,21 @@ namespace ImapOAuthWpfApp
                 statusLabel.Content = "Connecting to IMAP...";
                 await client.ConnectAsync("outlook.office365.com", SslMode.Implicit);
 
-                // prepare authentication token suitable for IMAP, POP3, or SMTP
+                /*
+                // NOTE: This is no longer needed in Rebex Secure Mail R5.7 or higher
+
+                // prepare (wrap) the authentication token for IMAP, POP3, or SMTP
                 string pattern = string.Format("user={0}{1}auth=Bearer {2}{1}{1}", _account.Username, '\x1', _accessToken);
                 string token = Convert.ToBase64String(Encoding.ASCII.GetBytes(pattern));
 
-                // authenticate using the OAuth 2.0 access token
+                // authenticate using the wrapped access token
                 statusLabel.Content = "Authenticating to IMAP...";
                 await client.LoginAsync(token, ImapAuthentication.OAuth20);
+                */
+
+                // authenticate using the OAuth 2.0 access token
+                statusLabel.Content = "Authenticating to IMAP...";
+                await client.LoginAsync(_account.Username, _accessToken, ImapAuthentication.OAuth20);
 
                 // list recent messages in the 'Inbox' folder
 

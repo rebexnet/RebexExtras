@@ -25,6 +25,11 @@ namespace Rebex.Samples
         public string AccessToken { get; private set; }
 
         /// <summary>
+        /// Access token expiration date/time.
+        /// </summary>
+        public DateTimeOffset? ExpiresOn { get; private set; }
+
+        /// <summary>
         /// User name of the authenticated user.
         /// Only available if 'profile' and 'openid' scopes were specified.
         /// </summary>
@@ -181,8 +186,13 @@ namespace Rebex.Samples
             // deserialize JSON response
             var response = DeserializeJson(responseJson);
 
-            // OAuth 2.0 access token
+            // OAuth 2.0 access token and expiration time
             AccessToken = GetStringValue(response, "access_token");
+            int? expiresIn = GetNumberValue(response, "expires_in");
+            if (expiresIn.HasValue)
+            {
+                ExpiresOn = DateTimeOffset.UtcNow.AddSeconds(expiresIn.Value);
+            }
 
             // OAuth 2.0 refresh token - only provided with 'offline_access' scope
             if (_scopes.Contains("offline_access"))
@@ -232,9 +242,14 @@ namespace Rebex.Samples
             // deserialize JSON response
             var response = DeserializeJson(responseJson);
 
-            // update OAuth 2.0 access token and refresh token
+            // update OAuth 2.0 access token, refresh token and expiration time
             AccessToken = GetStringValue(response, "access_token");
             RefreshToken = GetStringValue(response, "refresh_token");
+            int? expiresIn = GetNumberValue(response, "expires_in");
+            if (expiresIn.HasValue)
+            {
+                ExpiresOn = DateTimeOffset.UtcNow.AddSeconds(expiresIn.Value);
+            }
         }
 
         /// <summary>
@@ -325,6 +340,20 @@ namespace Rebex.Samples
         {
             dictionary.TryGetValue(key, out object value);
             return value != null ? Convert.ToString(value) : null;
+        }
+
+        /// <summary>
+        /// Retrieves a number with the specified name from a dictionary, or null if not present or not parsable.
+        /// </summary>
+        /// <param name="dictionary">Dictionary of key/object.</param>
+        /// <param name="key">Key.</param>
+        /// <returns>Number or null.</returns>
+        private static int? GetNumberValue(Dictionary<string, object> dictionary, string key)
+        {
+            dictionary.TryGetValue(key, out object value);
+            if (value == null) return null;
+            if (!int.TryParse(Convert.ToString(value), out int number)) return null;
+            return number;
         }
 
         /// <summary>
