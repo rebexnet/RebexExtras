@@ -1,10 +1,11 @@
 ﻿Office365_OAuth2
 ================
 
-Two WPF applications and a helper library that show how
-to authenticate to Office365 (Exchange Online) using OAuth 2.0 and retrieve
+**EwsOAuthWpfApp**, **ImapOAuthWpfApp**: Two WPF applications and a helper library that show how
+to authenticate to Office365 (Exchange Online) using OAuth 2.0
+in *delegated* mode (suitable for user-attended apps) and retrieve
 a list of recent messages with [Rebex Secure Mail](https://www.rebex.net/secure-mail.net/)
-using IMAP or EWS (Exchange Web Services) protocols. Targets .NET Framework 4.7.2 and .NET 5.0.
+using IMAP or EWS (Exchange Web Services) protocols. Targets .NET Framework 4.7.2 and .NET 6.0.
 
 See the blog post at https://blog.rebex.net/oauth2-office365-rebex-mail for details on how it works.
 
