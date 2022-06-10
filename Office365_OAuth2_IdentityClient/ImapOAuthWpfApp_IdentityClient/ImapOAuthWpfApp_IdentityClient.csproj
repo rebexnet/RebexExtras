@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net46;net50-windows</TargetFrameworks>
+    <TargetFrameworks>net46;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Imap" Version="5.0.7620" />
-    <PackageReference Include="Rebex.Mail" Version="5.0.7620" />
-    <PackageReference Include="Rebex.Networking" Version="5.0.7620" />
-    <PackageReference Include="Rebex.Common" Version="5.0.7620" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.27.0" />
+    <PackageReference Include="Rebex.Imap" Version="6.0.8181" />
+    <PackageReference Include="Rebex.Mail" Version="6.0.8181" />
+    <PackageReference Include="Rebex.Networking" Version="6.0.8181" />
+    <PackageReference Include="Rebex.Common" Version="6.0.8181" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.44.0" />
   </ItemGroup>
 
 </Project>
