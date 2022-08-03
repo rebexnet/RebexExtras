@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EwsOAuthWpfApp_IdentityClie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EwsOAuthAppOnlyConsole_IdentityClient", "EwsOAuthAppOnlyConsole_IdentityClient\EwsOAuthAppOnlyConsole_IdentityClient.csproj", "{5AF12E6C-DAD0-47DA-929E-85F87FB3C18F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmtpOAuthWpfApp_IdentityClient", "SmtpOAuthWpfApp_IdentityClient\SmtpOAuthWpfApp_IdentityClient.csproj", "{48F02D6A-9165-4457-B240-D9F34F367175}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5AF12E6C-DAD0-47DA-929E-85F87FB3C18F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AF12E6C-DAD0-47DA-929E-85F87FB3C18F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AF12E6C-DAD0-47DA-929E-85F87FB3C18F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F02D6A-9165-4457-B240-D9F34F367175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F02D6A-9165-4457-B240-D9F34F367175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F02D6A-9165-4457-B240-D9F34F367175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F02D6A-9165-4457-B240-D9F34F367175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

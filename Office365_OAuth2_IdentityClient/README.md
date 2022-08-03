@@ -1,12 +1,12 @@
 ﻿Office365_OAuth2_IdentityClient
 ===============================
 
-**EwsOAuthWpfApp_IdentityClient**, **ImapOAuthWpfApp_IdentityClient**:
-Two WPF applications that show how to authenticate to Office365 (Exchange Online)
+**EwsOAuthWpfApp_IdentityClient**, **ImapOAuthWpfApp_IdentityClient**, **SmtpOAuthWpfApp_IdentityClient**:
+Three WPF applications that show how to authenticate to Office365 (Exchange Online)
 with OAuth 2.0 using [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) 
 in *delegated* mode (suitable for user-attended apps)
 and retrieve a list of recent messages with [Rebex Secure Mail](https://www.rebex.net/secure-mail.net/)
-using IMAP or EWS (Exchange Web Services) protocols. Targets .NET Framework 4.6 and .NET 6.0.
+using EWS (Exchange Web Services), IMAP, and SMTP protocols. Targets .NET Framework 4.6 and .NET 6.0.
 
 For a version for .NETFramework 4.7.2 and .NET 6.0 that does not use Microsoft.Identity.Client,
 see [Office365_OAuth2](../Office365_OAuth2). That version makes it easier to understand how

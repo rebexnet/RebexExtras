@@ -1,0 +1,29 @@
+﻿<Window x:Class="SmtpOAuthWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Rebex SMTP - OAuth 2.0 authentication for Office365 Outlook" Height="380" Width="640" Icon="pack://application:,,,/MailIcon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="459*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="signButton" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="160" Height="32" Click="OutlookSign_Click"
+                BorderThickness="0" Padding="0" Content="Sign-in using OAuth 2.0" IsDefault="True"/>
+
+        <Label x:Name="statusLabel" Content="Welcome!" HorizontalAlignment="Left" Margin="163,10,0,0" VerticalAlignment="Top" Height="32" Width="278" VerticalContentAlignment="Center" Grid.Column="1"/>
+        <Button x:Name="refreshButton" HorizontalAlignment="Left" Margin="2,10,0,0" VerticalAlignment="Top" Width="150" Height="32" Click="OutlookRefresh_Click"
+            BorderThickness="0" Padding="0" Content="Refresh OAuth 2.0 token" IsDefault="False" Grid.Column="1"/>
+        <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="10,8,0,0" Grid.Row="1" VerticalAlignment="Top" Height="64" Width="54" Click="sendButton_Click"/>
+        <Label Content="From:" HorizontalAlignment="Left" Margin="69,4,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="fromTextBox" Margin="126,8,5,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="509" Grid.ColumnSpan="2" />
+        <Label Content="To:" HorizontalAlignment="Left" Margin="69,27,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="toTextBox" Margin="126,31,5,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="509" Grid.ColumnSpan="2" />
+        <Label Content="Subject:" HorizontalAlignment="Left" Margin="69,50,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="subjectTextBox" Margin="126,54,5,0" Grid.Row="1" TextWrapping="Wrap" Text="Testing Rebex Mail" VerticalAlignment="Top" Width="509" Grid.ColumnSpan="2" />
+        <TextBox x:Name="bodyTextBox" Margin="10,77,5,10" Grid.Row="1" TextWrapping="Wrap" Text="" AcceptsReturn="True" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
