@@ -1,8 +1,10 @@
 ﻿Office365_OAuth2_IdentityClient
 ===============================
 
+## Delegated authentication (for user apps)
+
 **EwsOAuthWpfApp_IdentityClient**, **ImapOAuthWpfApp_IdentityClient**, **SmtpOAuthWpfApp_IdentityClient**:
-Three WPF applications that show how to authenticate to Office365 (Exchange Online)
+These WPF applications that show how to authenticate to Office365 (Exchange Online)
 with OAuth 2.0 using [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) 
 in *delegated* mode (suitable for user-attended apps)
 and retrieve a list of recent messages with [Rebex Secure Mail](https://www.rebex.net/secure-mail.net/)
@@ -13,11 +15,13 @@ see [Office365_OAuth2](../Office365_OAuth2). That version makes it easier to und
 OAuth 2.0 flow actually works under the hood. See the blog post at
 https://blog.rebex.net/oauth2-office365-rebex-mail for details.
 
-**EwsOAuthAppOnlyConsole_IdentityClient**:
-WPF application that show how to authenticate to Office365 (Exchange Online)
+## App-only authentication (for services and deamons)
+
+**EwsOAuthAppOnlyConsole_IdentityClient**, **ImapOAuthAppOnlyConsole_IdentityClient**, **Pop3OAuthAppOnlyConsole_IdentityClient**:
+These console application that show how to authenticate to Office365 (Exchange Online)
 with OAuth 2.0 using [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client/) 
 in *app-only* mode (suitable for unattended services/deamons)
 and retrieve a list of recent messages with [Rebex Secure Mail](https://www.rebex.net/secure-mail.net/)
-using IMAP or EWS (Exchange Web Services) protocols. Targets .NET Framework 4.6 and .NET 6.0.
+using EWS (Exchange Web Services), IMAP, and POP3 protocols. Targets .NET Framework 4.6 and .NET 6.0.
 
 ![Screenshot](https://raw.githubusercontent.com/rebexnet/RebexExtras/master/Office365_OAuth2/screenshot.png)
