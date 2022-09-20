@@ -21,15 +21,15 @@ namespace EwsOAuthWpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
-    /// Shows how to authenticate to a mailbox at Office365 (Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
+    /// Shows how to authenticate to a mailbox at Microsoft 365 (Office 365, Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
     /// and retrieve a list of recent mail messages using Rebex Secure Mail (with EWS protocol).
     /// See the blog post at https://blog.rebex.net/oauth2-office365-rebex-mail for more information.
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application's client ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant and scopes
 
-        // application's client ID obtained from Azure
+        // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
 
         // specifies which users to allow (also consider "common", "consumers", domain name or a GUID identifier)
@@ -43,7 +43,7 @@ namespace EwsOAuthWpfApp
             //"email", // not required, but may be useful
             //"openid", // required by the 'profile' and 'email' scopes
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
-            "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Office365 via Exhange Web Services
+            "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via EWS
         };
 
         // 'PCI' API
@@ -80,14 +80,14 @@ namespace EwsOAuthWpfApp
                     RedirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient", 
                 };
 
-                // get an instanca of 'PCA' API
+                // get an instance of 'PCA' API
                 _publicClientApplication = PublicClientApplicationBuilder
                     .CreateWithApplicationOptions(options)
                     .WithParentActivityOrWindow(() => new System.Windows.Interop.WindowInteropHelper(this).Handle)
                     .Build();
 
                 // authenticate interactively for the scopes we need
-                statusLabel.Content = "Authenticating via Office365...";
+                statusLabel.Content = "Authenticating via Microsoft 365...";
                 AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(Prompt.NoPrompt).ExecuteAsync();
 
                 // keep the access token and account info
@@ -145,7 +145,7 @@ namespace EwsOAuthWpfApp
             using (var client = new Ews())
             {
                 // communication logging (enable if needed)
-                //client.LogWriter = new FileLogWriter("ews-oauth.log", LogLevel.Debug);
+                //client.LogWriter = new Rebex.FileLogWriter("ews-oauth.log", Rebex.LogLevel.Debug);
 
                 // connect to the server
                 statusLabel.Content = "Connecting to EWS...";

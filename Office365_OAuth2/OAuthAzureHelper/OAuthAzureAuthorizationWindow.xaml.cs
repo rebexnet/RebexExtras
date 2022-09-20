@@ -46,8 +46,8 @@ namespace Rebex.Samples
         /// "profile" = retrieve the username and full name (this is a must for IMAP);
         /// "email" = retrieve the user's e-mail address;
         /// "offline_access" = makes it possible for the application to refresh the access token when it expires;
-        /// "https://outlook.office365.com/EWS.AccessAsUser.All" = for accessing Office365 via EWS;
-        /// "https://outlook.office365.com/IMAP.AccessAsUser.All" = for accessing Office365 via IMAP.
+        /// "https://outlook.office365.com/EWS.AccessAsUser.All" = for accessing Microsoft 365 via EWS;
+        /// "https://outlook.office365.com/IMAP.AccessAsUser.All" = for accessing Microsoft 365 via IMAP.
         /// See https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent for details.
         /// </summary>
         public string[] Scopes { get; set; } = new[] { "openid", "profile" };

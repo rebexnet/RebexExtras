@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Rebex.Samples
 {
     /// <summary>
-    /// Helper class for retrieval of OAuth2 credentials suitable for Office365 from Microsoft via Azure.
+    /// Helper class for retrieval of OAuth2 credentials suitable for Microsoft 365 via Azure.
     /// Implements the authorization code flow described at
     /// https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code
     /// using .NET API and System.Text.Json (or Newtonsoft.Json).
@@ -50,7 +50,7 @@ namespace Rebex.Samples
 
         /// <summary>
         /// Refresh token. Used to request the access token when it expires.
-        /// This is used used by <see cref="RefreshAccessTokenAsync"/> method to obtain a new <see cref="AccessToken"/> when the old one expires.
+        /// This is used by <see cref="RefreshAccessTokenAsync"/> method to obtain a new <see cref="AccessToken"/> when the old one expires.
         /// </summary>
         public string RefreshToken { get; private set; }
 
@@ -76,7 +76,7 @@ namespace Rebex.Samples
         /// Application (client) ID. Assigned by Azure portal's App registrations.
         /// </param>
         /// <param name="tenantId">
-        /// Controls who can sign into the application. Allowed valules include 'common', 'organizations', 'consumers', domain, or a GUID identifier.
+        /// Controls who can sign into the application. Allowed values include 'common', 'organizations', 'consumers', domain, or a GUID identifier.
         /// See https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols#endpoints for details.
         /// </param>
         /// <param name="promptType">
@@ -101,8 +101,8 @@ namespace Rebex.Samples
         /// "profile" = retrieve the username and full name (this is a must for IMAP);
         /// "email" = retrieve the user's e-mail address;
         /// "offline_access" = makes it possible for the application to refresh the access token when it expires;
-        /// "https://outlook.office365.com/EWS.AccessAsUser.All" = for accessing Office365 via EWS;
-        /// "https://outlook.office365.com/IMAP.AccessAsUser.All" = for accessing Office365 via IMAP.
+        /// "https://outlook.office365.com/EWS.AccessAsUser.All" = for accessing Microsoft 365 via EWS;
+        /// "https://outlook.office365.com/IMAP.AccessAsUser.All" = for accessing Microsoft 365 via IMAP.
         /// See https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent for details.
         /// </param>
         public OAuthAzureCredentials(string clientId, string tenantId, string promptType, string redirectUri, params string[] scopes)

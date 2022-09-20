@@ -19,15 +19,15 @@ namespace EwsOAuthWpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
-    /// Shows how to authenticate to a mailbox at Office365 (Exchange Online) with OAuth 2.0
+    /// Shows how to authenticate to a mailbox at Microsoft 365 (Office 365, Exchange Online) with OAuth 2.0
     /// and retrieve a list of recent mail messages using Rebex Secure Mail (with EWS protocol).
     /// See the blog post at https://blog.rebex.net/oauth2-office365-rebex-mail for more information.
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application's client ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant and scopes
 
-        // application's client ID obtained from Azure
+        // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
 
         // specifies which users to allow (also consider "common", "consumers", domain name or a GUID identifier)
@@ -41,7 +41,7 @@ namespace EwsOAuthWpfApp
             //"email", // not required, but may be useful
             //"openid", // required by the 'profile' and 'email' scopes
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
-            "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Office365 via Exhange Web Services
+            "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via EWS
         };
 
         // credentials that were used to authorize a user
@@ -73,14 +73,14 @@ namespace EwsOAuthWpfApp
             }
 
             // create OAuthOutlookAuthorizationWindow that handles OAuth2 authorization
-            statusLabel.Content = "Authenticating via Office365...";
+            statusLabel.Content = "Authenticating via Microsoft 365...";
             _authenticationWindow = new OAuthAzureAuthorizationWindow();
             _authenticationWindow.Owner = this;
             _authenticationWindow.Finished += OutlookSign_Finished;
 
             // specify the kind of authorization we need
             // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code for details)
-            _authenticationWindow.ClientId = ClientId; // application's client ID
+            _authenticationWindow.ClientId = ClientId; // application (client) ID
             _authenticationWindow.TenantId = TenantId; // specify kinds of users to allow
             _authenticationWindow.PromptType = ""; // use default prompt type (also consider "login", "select_account", "consent", ...)
             _authenticationWindow.Scopes = Scopes; // scope of permissions to request
@@ -91,7 +91,7 @@ namespace EwsOAuthWpfApp
 
         private void OutlookSign_Finished(object sender, EventArgs e)
         {
-            // report error if it occured
+            // report error if it occurred
             if (_authenticationWindow.Error != null)
             {
                 statusLabel.Content = "Failure.";
@@ -150,7 +150,7 @@ namespace EwsOAuthWpfApp
             using (var client = new Ews())
             {
                 // communication logging (enable if needed)
-                //client.LogWriter = new FileLogWriter("ews-oauth.log", LogLevel.Debug);
+                //client.LogWriter = new Rebex.FileLogWriter("ews-oauth.log", Rebex.LogLevel.Debug);
 
                 // connect to the server
                 statusLabel.Content = "Connecting to EWS...";

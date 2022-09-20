@@ -3,7 +3,7 @@
 namespace Rebex.Samples
 {
     /// <summary>
-    /// Represents an exception that occured during OAuth2 authentication.
+    /// Represents an exception that occurred during OAuth2 authentication.
     /// </summary>
     public class OAuthAzureException : Exception
     {

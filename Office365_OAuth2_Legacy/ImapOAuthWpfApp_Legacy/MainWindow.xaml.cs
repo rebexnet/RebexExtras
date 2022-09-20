@@ -19,15 +19,15 @@ namespace ImapOAuthWpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
-    /// Shows how to authenticate to a mailbox at Office365 (Exchange Online) with OAuth 2.0
+    /// Shows how to authenticate to a mailbox at Microsoft 365 (Office 365, Exchange Online) with OAuth 2.0
     /// and retrieve a list of recent mail messages using Rebex Secure Mail (with IMAP protocol).
     /// See the blog post at https://blog.rebex.net/oauth2-office365-rebex-mail for more information.
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application's client ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant and scopes
 
-        // application's client ID obtained from Azure
+        // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
 
         // specifies which users to allow (also consider "common", "consumers", domain name or a GUID identifier)
@@ -37,11 +37,11 @@ namespace ImapOAuthWpfApp
         // scope of permissions to request from the user
         // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent for details)
         private static readonly string[] Scopes = new[] {
-            "profile", // needed to retrieve the user name, which is required for Office365's IMAP authentication
+            "profile", // needed to retrieve the user name, which is required for Office 365's IMAP authentication
             //"email", // not required, but may be useful
             "openid", // required by the 'profile' and 'email' scopes
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
-            "https://outlook.office365.com/IMAP.AccessAsUser.All", // scope for accessing Office365 via IMAP
+            "https://outlook.office365.com/IMAP.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via IMAP
         };
 
         // credentials that were used to authorize a user
@@ -73,14 +73,14 @@ namespace ImapOAuthWpfApp
             }
 
             // create OAuthOutlookAuthorizationWindow that handles OAuth2 authorization
-            statusLabel.Content = "Authenticating via Office365...";
+            statusLabel.Content = "Authenticating via Microsoft 365...";
             _authenticationWindow = new OAuthAzureAuthorizationWindow();
             _authenticationWindow.Owner = this;
             _authenticationWindow.Finished += OutlookSign_Finished;
 
             // specify the kind of authorization we need
             // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code for details)
-            _authenticationWindow.ClientId = ClientId; // application's client ID
+            _authenticationWindow.ClientId = ClientId; // application (client) ID
             _authenticationWindow.TenantId = TenantId; // specify kinds of users to allow
             _authenticationWindow.PromptType = ""; // use default prompt type (also consider "login", "select_account", "consent", ...)
             _authenticationWindow.Scopes = Scopes; // scope of permissions to request
@@ -91,7 +91,7 @@ namespace ImapOAuthWpfApp
 
         private void OutlookSign_Finished(object sender, EventArgs e)
         {
-            // report error if it occured
+            // report error if it occurred
             if (_authenticationWindow.Error != null)
             {
                 statusLabel.Content = "Failure.";
@@ -153,24 +153,11 @@ namespace ImapOAuthWpfApp
             using (var client = new Imap())
             {
                 // communication logging (enable if needed)
-                // client.LogWriter = new FileLogWriter("imap-oauth.log", LogLevel.Debug);
+                //client.LogWriter = new Rebex.FileLogWriter("imap-oauth.log", Rebex.LogLevel.Debug);
 
                 // connect to the server
                 statusLabel.Content = "Connecting to IMAP...";
                 client.Connect("outlook.office365.com", SslMode.Implicit);
-
-                /*
-                // NOTE: This is no longer needed in Rebex Secure Mail R5.7 or higher
-
-                // prepare (wrap) the authentication token for IMAP, POP3, or SMTP
-                string userName = _credentials.UserName;
-                string accessToken = _credentials.AccessToken;
-                string pattern = string.Format("user={0}{1}auth=Bearer {2}{1}{1}", userName, '\x1', accessToken);
-                string token = Convert.ToBase64String(Encoding.ASCII.GetBytes(pattern));
-
-                // authenticate using the wrapped access token
-                client.Login(token, ImapAuthentication.OAuth20);
-                */
 
                 // authenticate using the OAuth 2.0 access token
                 statusLabel.Content = "Authenticating to IMAP...";

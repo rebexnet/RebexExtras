@@ -21,15 +21,15 @@ namespace SmtpOAuthWpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml.
-    /// Shows how to authenticate to a mailbox at Office365 (Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
+    /// Shows how to authenticate to a mailbox at Microsoft 365 (Office 365, Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
     /// and send an mail messages using Rebex Secure Mail (with SMTP protocol).
     /// See the blog post at https://blog.rebex.net/oauth2-office365-rebex-mail for more information.
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application's client ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant and scopes
 
-        // application's client ID obtained from Azure
+        // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
 
         // specifies which users to allow (also consider "common", "consumers", domain name or a GUID identifier)
@@ -39,11 +39,11 @@ namespace SmtpOAuthWpfApp
         // scope of permissions to request from the user
         // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent for details)
         private static readonly string[] Scopes = new[] {
-            "profile", // needed to retrieve the user name, which is required for Office365's IMAP authentication
+            "profile", // needed to retrieve the user name, which is required for Office 365's SMTP authentication
             "email", // not required, but may be useful
             "openid", // required by the 'profile' and 'email' scopes
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
-            "https://outlook.office365.com/SMTP.Send", // scope for sending OFfice465 mail via SMTP
+            "https://outlook.office365.com/SMTP.Send", // scope for sending Microsoft 365 Exchange Online mail via SMTP
         };
 
         // 'PCA' API
@@ -80,14 +80,14 @@ namespace SmtpOAuthWpfApp
                     RedirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient",
                 };
 
-                // get an instanca of 'PCA' API
+                // get an instance of 'PCA' API
                 _publicClientApplication = PublicClientApplicationBuilder
                     .CreateWithApplicationOptions(options)
                     .WithParentActivityOrWindow(() => new System.Windows.Interop.WindowInteropHelper(this).Handle)
                     .Build();
 
                 // authenticate interactively for the scopes we need
-                statusLabel.Content = "Authenticating via Office365...";
+                statusLabel.Content = "Authenticating via Microsoft 365...";
                 AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(Prompt.Consent).ExecuteAsync();
 
                 // keep the access token and account info
@@ -155,6 +155,9 @@ namespace SmtpOAuthWpfApp
             var client = new Smtp();
             try
             {
+                // communication logging (enable if needed)
+                //client.LogWriter = new Rebex.FileLogWriter("smtp-oauth.log", Rebex.LogLevel.Debug);
+
                 await client.ConnectAsync("smtp.office365.com", SslMode.Explicit);
                 await client.LoginAsync(_account.Username, _accessToken, SmtpAuthentication.OAuth20);
                 return client;

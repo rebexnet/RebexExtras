@@ -10,14 +10,14 @@ using Rebex.Net;
 namespace EwsOAuthAppOnlyConsole
 {
     /// <summary>
-    /// Shows how to authenticate to a mailbox at Office365 (Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
+    /// Shows how to authenticate to a mailbox at Microsoft 365 (Office 365, Exchange Online) with OAuth 2.0 (using Microsoft.Identity.Client)
     /// using app-only authentication and retrieve a list of recent mail messages using Rebex Secure Mail (with EWS protocol).
     /// </summary>
     public static class Program
     {
-        //TODO: change the application's client ID, specify client secret value and tenant
+        //TODO: change the application (client) ID, specify client secret value and tenant
 
-        // application's client ID obtained from Azure
+        // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000"; // configure this
 
         // application's 'client secret' (can also be referred to as application password
@@ -32,7 +32,7 @@ namespace EwsOAuthAppOnlyConsole
 
         // default scope of permissions to request
         private static readonly string[] Scopes = new[] {
-            "https://outlook.office365.com/.default", // scope for accessing Office365 via Exhange Web Services with app-only auth
+            "https://outlook.office365.com/.default", // scope for accessing Microsoft 365 Exchange Online with app-only auth
         };
 
         public static async Task Main()
@@ -46,7 +46,7 @@ namespace EwsOAuthAppOnlyConsole
                 if (ClientId.Contains("00000000-")) throw new ApplicationException("Please configure ClientId in MainWindow.xaml.cs file.");
                 if (Rebex.Licensing.Key.Contains("_TRIAL_KEY_")) throw new ApplicationException("Please set a license key in LicenseKey.cs file.");
 
-                // get an instanca of 'CCA' API
+                // get an instance of 'CCA' API
                 var cca = ConfidentialClientApplicationBuilder
                     .Create(ClientId)
                     .WithClientSecret(ClientSecretValue)
@@ -54,7 +54,7 @@ namespace EwsOAuthAppOnlyConsole
                     .Build();
 
                 // authenticate interactively for the scopes we need
-                Console.WriteLine("Authenticating via Office365...");
+                Console.WriteLine("Authenticating via Microsoft 365...");
                 AuthenticationResult result = await cca.AcquireTokenForClient(Scopes).ExecuteAsync();
 
                 // keep the access token and account info
@@ -68,9 +68,9 @@ namespace EwsOAuthAppOnlyConsole
                 using (var client = new Ews())
                 {
                     // communication logging (enable if needed)
-                    //client.LogWriter = new FileLogWriter("ews-oauth.log", LogLevel.Debug);
+                    //client.LogWriter = new Rebex.FileLogWriter("ews-oauth.log", Rebex.LogLevel.Debug);
 
-                    /// impersonate for a mailbox
+                    // impersonate for a mailbox
                     client.Settings.Impersonation = new EwsImpersonation() { SmtpAddress = SmtpAddress };
 
                     // connect to the server
@@ -78,7 +78,7 @@ namespace EwsOAuthAppOnlyConsole
                     await client.ConnectAsync("outlook.office365.com", SslMode.Implicit);
 
                     // authenticate using the OAuth 2.0 access token
-                    Console.WriteLine("Authenticating to EWS...");
+                    Console.WriteLine($"Authenticating to EWS ({SmtpAddress})...");
                     await client.LoginAsync(accessToken, EwsAuthentication.OAuth20);
 
                     // list recent messages in the 'Inbox' folder
