@@ -10,11 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Pop3" Version="6.0.8181" />
-    <PackageReference Include="Rebex.Mail" Version="6.0.8181" />
-    <PackageReference Include="Rebex.Networking" Version="6.0.8181" />
-    <PackageReference Include="Rebex.Common" Version="6.0.8181" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.44.0" />
+    <PackageReference Include="Rebex.Pop3" Version="6.0.8295" />
+    <PackageReference Include="Rebex.Mail" Version="6.0.8295" />
+    <PackageReference Include="Rebex.Networking" Version="6.0.8295" />
+    <PackageReference Include="Rebex.Common" Version="6.0.8295" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.47.0" />
   </ItemGroup>
 
 </Project>
