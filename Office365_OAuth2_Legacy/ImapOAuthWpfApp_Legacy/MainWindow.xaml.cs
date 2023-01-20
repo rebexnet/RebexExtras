@@ -25,7 +25,7 @@ namespace ImapOAuthWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application (client) ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant, scopes and prompt type
 
         // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
@@ -43,6 +43,10 @@ namespace ImapOAuthWpfApp
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
             "https://outlook.office365.com/IMAP.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via IMAP
         };
+
+        // specifies the kind of login/consent dialog
+        private const string PromptType = OAuthPromptType.Default;
+
 
         // credentials that were used to authorize a user
         private OAuthAzureCredentials _credentials;
@@ -82,7 +86,7 @@ namespace ImapOAuthWpfApp
             // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code for details)
             _authenticationWindow.ClientId = ClientId; // application (client) ID
             _authenticationWindow.TenantId = TenantId; // specify kinds of users to allow
-            _authenticationWindow.PromptType = ""; // use default prompt type (also consider "login", "select_account", "consent", ...)
+            _authenticationWindow.PromptType = PromptType; // appearance of the login/consent dialog
             _authenticationWindow.Scopes = Scopes; // scope of permissions to request
 
             // start the authentication

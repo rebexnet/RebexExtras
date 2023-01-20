@@ -27,7 +27,7 @@ namespace EwsOAuthWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application (client) ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant, scopes and prompt type
 
         // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
@@ -45,6 +45,10 @@ namespace EwsOAuthWpfApp
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
             "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via EWS
         };
+
+        // specifies the kind of login/consent dialog
+        private static readonly Prompt PromptType = Prompt.NoPrompt;
+
 
         // 'PCI' API
         private IPublicClientApplication _publicClientApplication;
@@ -88,7 +92,7 @@ namespace EwsOAuthWpfApp
 
                 // authenticate interactively for the scopes we need
                 statusLabel.Content = "Authenticating via Microsoft 365...";
-                AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(Prompt.NoPrompt).ExecuteAsync();
+                AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(PromptType).ExecuteAsync();
 
                 // keep the access token and account info
                 _accessToken = result.AccessToken;

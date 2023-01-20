@@ -26,7 +26,7 @@ namespace EwsOAuthWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: change the application (client) ID, specify proper tenant and scopes
+        //TODO: change the application (client) ID, specify proper tenant, scopes and prompt type
 
         // application (client) ID obtained from Azure
         private const string ClientId = "00000000-0000-0000-0000-000000000000";
@@ -44,6 +44,10 @@ namespace EwsOAuthWpfApp
             "offline_access", // specify this scope to make it possible to refresh the access token when it expires (after one hour)
             "https://outlook.office365.com/EWS.AccessAsUser.All", // scope for accessing Microsoft 365 Exchange Online via EWS
         };
+
+        // specifies appearance of the login/consent dialog
+        private const string PromptType = OAuthPromptType.Default;
+
 
         // credentials that were used to authorize a user
         private OAuthAzureCredentials _credentials;
@@ -73,7 +77,7 @@ namespace EwsOAuthWpfApp
                 // (see https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code for details)
                 authenticationWindow.ClientId = ClientId; // application (client) ID
                 authenticationWindow.TenantId = TenantId; // specify kinds of users to allow
-                authenticationWindow.PromptType = ""; // use default prompt type (also consider "login", "select_account", "consent", ...)
+                authenticationWindow.PromptType = PromptType; // appearance of the login/consent dialog
                 authenticationWindow.Scopes = Scopes; // scope of permissions to request
 
                 // perform the authorization and obtain the credentials
