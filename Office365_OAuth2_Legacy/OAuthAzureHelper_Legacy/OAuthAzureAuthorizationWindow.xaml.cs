@@ -14,7 +14,7 @@ namespace Rebex.Samples
         public string ClientId { get; set; }
 
         /// <summary>
-        /// Controls who can sign into the application. Allowed valules include 'common', 'organizations', 'consumers', domain, or a GUID identifier.
+        /// Controls who can sign into the application. Allowed values include 'common', 'organizations', 'consumers', domain, or a GUID identifier.
         /// See https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols#endpoints for details.
         /// </summary>
         public string TenantId { get; set; } = "organizations";
@@ -126,11 +126,11 @@ namespace Rebex.Samples
         /// Makes sure we landed on an expected authentication URI.
         /// </summary>
         /// <param name="uri">URI.</param>
-        /// <returns>True of OK.</returns>
+        /// <returns>True if OK.</returns>
         private bool CheckExpectedAuthority(Uri uri)
         {
             // abort authentication if we navigated to an unexpected domain
-            // (this usually means that Microsoft's authenticatino website is not accessible)
+            // (this usually means that Microsoft's authentication website is not accessible)
             var expectedAuthority = new Uri(Credentials.RedirectUri).GetLeftPart(UriPartial.Authority);
             if (uri.GetLeftPart(UriPartial.Authority) != expectedAuthority)
             {
@@ -212,9 +212,13 @@ namespace Rebex.Samples
             }
             catch (Exception error)
             {
-                if (!(error is OAuthAzureException))
+                if (error is OAuthAzureException)
                 {
-                    error = new OAuthAzureException("Error during OAuth2 authentication. " + error.Message, error);
+                    Error = error;
+                }
+                else
+                {
+                    Error = new OAuthAzureException("Error during OAuth2 authentication. " + error.Message, error);
                 }
                 Close();
                 if (_authenticating)
@@ -235,7 +239,7 @@ namespace Rebex.Samples
         {
             if (_authenticating)
             {
-                Error = new OAuthAzureException("Authentication window has been closed unexpectedly.");
+                Error = Error ?? new OAuthAzureException("Authentication window has been closed unexpectedly.");
                 Finished?.Invoke(this, EventArgs.Empty);
                 _authenticating = false;
             }
