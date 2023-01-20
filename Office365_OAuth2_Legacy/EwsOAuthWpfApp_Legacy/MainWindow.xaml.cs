@@ -66,7 +66,7 @@ namespace EwsOAuthWpfApp
                 MessageBox.Show(this, "Please configure ClientId in MainWindow.xaml.cs file.", "Error");
                 return;
             }
-            if (Rebex.Licensing.Key.Contains("_TRIAL_KEY_"))
+            if (string.IsNullOrEmpty(Rebex.Licensing.Key))
             {
                 MessageBox.Show(this, "Please set a license key in LicenseKey.cs file.", "Error");
                 return;
