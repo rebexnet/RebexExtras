@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Ews" Version="6.0.8295" />
-    <PackageReference Include="Rebex.Mail" Version="6.0.8295" />
-    <PackageReference Include="Rebex.Networking" Version="6.0.8295" />
-    <PackageReference Include="Rebex.Common" Version="6.0.8295" />
+    <PackageReference Include="Rebex.Ews" Version="7.0.8581" />
+    <PackageReference Include="Rebex.Mail" Version="7.0.8581" />
+    <PackageReference Include="Rebex.Networking" Version="7.0.8581" />
+    <PackageReference Include="Rebex.Common" Version="7.0.8581" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.47.0" />
   </ItemGroup>
 
