@@ -76,6 +76,9 @@ namespace ImapOAuthWpfApp
                 return;
             }
 
+            // set 0x0C00 to use TLS 1.2 for HTTPS requests (required by Microsoft Azure)
+            System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)0x0C00;
+
             // create OAuthOutlookAuthorizationWindow that handles OAuth2 authorization
             statusLabel.Content = "Authenticating via Microsoft 365...";
             _authenticationWindow = new OAuthAzureAuthorizationWindow();
