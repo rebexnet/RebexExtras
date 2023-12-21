@@ -134,13 +134,13 @@ namespace Rebex.Samples
             var expectedAuthority = new Uri(Credentials.RedirectUri).GetLeftPart(UriPartial.Authority);
             if (uri.GetLeftPart(UriPartial.Authority) != expectedAuthority)
             {
-                Close();
                 if (_authenticating)
                 {
                     Error = new OAuthAzureException("Unable to open authorization URL.");
                     Finished?.Invoke(this, EventArgs.Empty);
                     _authenticating = false;
                 }
+                Close();
                 return false;
             }
 
@@ -208,7 +208,6 @@ namespace Rebex.Samples
                     Finished?.Invoke(this, EventArgs.Empty);
                     _authenticating = false;
                 }
-                Close();
             }
             catch (Exception error)
             {
@@ -220,14 +219,13 @@ namespace Rebex.Samples
                 {
                     Error = new OAuthAzureException("Error during OAuth2 authentication. " + error.Message, error);
                 }
-                Close();
                 if (_authenticating)
                 {
-                    Error = new OAuthAzureException("Unable to open authorization URL.");
                     Finished?.Invoke(this, EventArgs.Empty);
                     _authenticating = false;
                 }
             }
+            Close();
         }
 
         /// <summary>
