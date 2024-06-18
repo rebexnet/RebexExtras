@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Identity.Client;
+#if NET6_0_OR_GREATER
+using Microsoft.Identity.Client.Desktop;
+#endif
 using Rebex.Samples;
 using Rebex.Net;
 
@@ -88,11 +91,20 @@ namespace SmtpOAuthWpfApp
                 _publicClientApplication = PublicClientApplicationBuilder
                     .CreateWithApplicationOptions(options)
                     .WithParentActivityOrWindow(() => new System.Windows.Interop.WindowInteropHelper(this).Handle)
+#if NET6_0_OR_GREATER
+                    .WithWindowsEmbeddedBrowserSupport()
+#endif
                     .Build();
 
                 // authenticate interactively for the scopes we need
                 statusLabel.Content = "Authenticating via Microsoft 365...";
-                AuthenticationResult result = await _publicClientApplication.AcquireTokenInteractive(Scopes).WithPrompt(PromptType).ExecuteAsync();
+                AuthenticationResult result = await _publicClientApplication
+                    .AcquireTokenInteractive(Scopes)
+                    .WithPrompt(PromptType)
+#if NET6_0_OR_GREATER
+                    .WithUseEmbeddedWebView(true)
+#endif
+                    .ExecuteAsync();
 
                 // keep the access token and account info
                 _accessToken = result.AccessToken;

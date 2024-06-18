@@ -264,7 +264,10 @@ namespace Rebex.Samples
             byte[] postBytes = Encoding.UTF8.GetBytes(requestBody);
 
             // create and post web request
+
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
             var request = WebRequest.Create(uri);
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = postBytes.Length;
