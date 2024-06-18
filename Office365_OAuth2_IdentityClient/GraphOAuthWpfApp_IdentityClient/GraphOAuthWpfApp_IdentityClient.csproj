@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\LicenseKey.cs" Link="LicenseKey.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MailIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rebex.Mail" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Networking" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Common" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Graph" Version="7.0.8943" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
+    <PackageReference Include="Microsoft.Identity.Client.Desktop" Version="4.61.3" Condition="'$(TargetFramework)' == 'net6.0-windows'" />
+  </ItemGroup>
+</Project>

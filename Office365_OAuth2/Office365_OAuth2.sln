@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EwsOAuthWpfApp", "EwsOAuthW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImapOAuthWpfApp", "ImapOAuthWpfApp\ImapOAuthWpfApp.csproj", "{53D18E84-18AF-40EC-A22D-8B4CF9339643}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphOAuthWpfApp", "GraphOAuthWpfApp\GraphOAuthWpfApp.csproj", "{9BC50DC3-7B20-40B6-BAD7-7505F3734FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{53D18E84-18AF-40EC-A22D-8B4CF9339643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53D18E84-18AF-40EC-A22D-8B4CF9339643}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53D18E84-18AF-40EC-A22D-8B4CF9339643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC50DC3-7B20-40B6-BAD7-7505F3734FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC50DC3-7B20-40B6-BAD7-7505F3734FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC50DC3-7B20-40B6-BAD7-7505F3734FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC50DC3-7B20-40B6-BAD7-7505F3734FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

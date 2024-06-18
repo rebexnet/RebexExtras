@@ -1,0 +1,19 @@
+﻿<Window x:Class="GraphOAuthWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Rebex Graph - OAuth 2.0 authentication for Office365 Outlook" Height="380" Width="640" Icon="pack://application:,,,/MailIcon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="signButton" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" Height="32" Click="OutlookSign_Click"
+                BorderThickness="0" Padding="0" Content="Sign-in using OAuth 2.0" IsDefault="True"/>
+
+        <ListView x:Name="lvItems" Grid.Row="1" />
+
+        <Label x:Name="statusLabel" Content="Welcome!" HorizontalAlignment="Left" Margin="344,10,0,0" VerticalAlignment="Top" Height="32" Width="278" VerticalContentAlignment="Center"/>
+        <Button x:Name="refreshButton" HorizontalAlignment="Left" Margin="183,10,0,0" VerticalAlignment="Top" Width="150" Height="32" Click="OutlookRefresh_Click"
+            BorderThickness="0" Padding="0" Content="Refresh OAuth 2.0 token" IsDefault="False"/>
+    </Grid>
+</Window>

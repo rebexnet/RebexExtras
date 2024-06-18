@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\LicenseKey.cs" Link="LicenseKey.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rebex.Mail" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Networking" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Common" Version="7.0.8943" />
+    <PackageReference Include="Rebex.Graph" Version="7.0.8943" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
+  </ItemGroup>
+
+</Project>
