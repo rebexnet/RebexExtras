@@ -46,7 +46,7 @@ namespace EwsOAuthWpfApp
         };
 
         // specifies appearance of the login/consent dialog
-        private const string PromptType = OAuthPromptType.Default;
+        private const string PromptType = OAuthPromptType.SelectAccount;
 
 
         // credentials that were used to authorize a user

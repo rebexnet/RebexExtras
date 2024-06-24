@@ -50,7 +50,7 @@ namespace EwsOAuthWpfApp
         };
 
         // specifies the kind of login/consent dialog
-        private static readonly Prompt PromptType = Prompt.NoPrompt;
+        private static readonly Prompt PromptType = Prompt.SelectAccount;
 
 
         // 'PCI' API
