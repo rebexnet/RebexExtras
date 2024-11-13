@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="7.0.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
     <Reference Include="System.Web" />
   </ItemGroup>
 

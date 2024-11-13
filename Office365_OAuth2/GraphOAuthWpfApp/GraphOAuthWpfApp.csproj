@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Mail" Version="7.0.9048" />
-    <PackageReference Include="Rebex.Networking" Version="7.0.9048" />
-    <PackageReference Include="Rebex.Common" Version="7.0.9048" />
-    <PackageReference Include="Rebex.Graph" Version="7.0.9048" />
+    <PackageReference Include="Rebex.Mail" Version="7.0.9083" />
+    <PackageReference Include="Rebex.Networking" Version="7.0.9083" />
+    <PackageReference Include="Rebex.Common" Version="7.0.9083" />
+    <PackageReference Include="Rebex.Graph" Version="7.0.9083" />
   </ItemGroup>
 
   <ItemGroup>
