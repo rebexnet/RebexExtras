@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Smtp" Version="7.0.9209" />
-    <PackageReference Include="Rebex.Mail" Version="7.0.9209" />
-    <PackageReference Include="Rebex.Networking" Version="7.0.9209" />
-    <PackageReference Include="Rebex.Common" Version="7.0.9209" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.70.0" />
-    <PackageReference Include="Microsoft.Identity.Client.Desktop" Version="4.70.0" Condition="'$(TargetFramework)' == 'net8.0-windows'" />
+    <PackageReference Include="Rebex.Smtp" Version="7.0.9313" />
+    <PackageReference Include="Rebex.Mail" Version="7.0.9313" />
+    <PackageReference Include="Rebex.Networking" Version="7.0.9313" />
+    <PackageReference Include="Rebex.Common" Version="7.0.9313" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.76.0" />
+    <PackageReference Include="Microsoft.Identity.Client.Desktop" Version="4.76.0" Condition="'$(TargetFramework)' == 'net8.0-windows'" />
   </ItemGroup>
 
 </Project>
