@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Mail" Version="7.0.9313" />
-    <PackageReference Include="Rebex.Networking" Version="7.0.9313" />
-    <PackageReference Include="Rebex.Common" Version="7.0.9313" />
-    <PackageReference Include="Rebex.Graph" Version="7.0.9313" />
+    <PackageReference Include="Rebex.Mail" Version="8.0.9673" />
+    <PackageReference Include="Rebex.Networking" Version="8.0.9673" />
+    <PackageReference Include="Rebex.Common" Version="8.0.9673" />
+    <PackageReference Include="Rebex.Graph" Version="8.0.9673" />
   </ItemGroup>
 
   <ItemGroup>
