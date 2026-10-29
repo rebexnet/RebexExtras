@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net462;net10.0-windows</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,11 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebex.Mail" Version="8.0.9673" />
-    <PackageReference Include="Rebex.Networking" Version="8.0.9673" />
-    <PackageReference Include="Rebex.Common" Version="8.0.9673" />
-    <PackageReference Include="Rebex.Graph" Version="8.0.9673" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.85.1" />
+    <PackageReference Include="Rebex.Mail" Version="8.0.9797" />
+    <PackageReference Include="Rebex.Networking" Version="8.0.9797" />
+    <PackageReference Include="Rebex.Common" Version="8.0.9797" />
+    <PackageReference Include="Rebex.Graph" Version="8.0.9797" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.92.0" />
   </ItemGroup>
 
 </Project>
